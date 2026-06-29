@@ -3,6 +3,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
+export const PROJECT_LINKS: Record<string, string> = {
+  "APE": "", // TODO: insert real GitHub/Live demo URL
+  "Payanam Parcel": "", // TODO: insert real GitHub/Live demo URL
+  "Audadham": "", // TODO: insert real GitHub/Live demo URL
+};
+
 const PROJECTS = [
   {
     name: "APE",
@@ -33,9 +39,12 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
-              Our Work
+              Featured Builds
             </h2>
-            <div className="w-24 h-1 bg-highlight rounded-full" />
+            <div className="w-24 h-1 bg-highlight rounded-full mb-6" />
+            <p className="text-lg text-dark/70 max-w-2xl">
+              Projects we've built to sharpen our craft — and prove what we can do for you.
+            </p>
           </motion.div>
 
           <motion.div
@@ -75,12 +84,20 @@ export default function Portfolio() {
                 <p className="text-dark/70 text-lg leading-relaxed max-w-md">
                   {project.description}
                 </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 font-bold text-primary hover:text-highlight transition-colors"
-                >
-                  View Project <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-                </a>
+                {PROJECT_LINKS[project.name] ? (
+                  <a
+                    href={PROJECT_LINKS[project.name]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-bold text-primary hover:text-highlight transition-colors"
+                  >
+                    View Project <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 font-bold text-primary/40 cursor-not-allowed">
+                    Coming Soon <ArrowRight size={20} />
+                  </span>
+                )}
               </div>
             </motion.div>
           ))}

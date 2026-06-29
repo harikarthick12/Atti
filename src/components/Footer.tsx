@@ -2,6 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, MessageCircle, Briefcase, Globe } from "lucide-react";
 
+export const SOCIAL_LINKS = {
+  instagram: "", // TODO: insert real Instagram URL
+  linkedin: "", // TODO: insert real LinkedIn URL
+  twitter: "", // TODO: insert real Twitter URL
+};
+
 export default function Footer() {
   return (
     <footer className="bg-dark text-accent py-16 relative overflow-hidden">
@@ -10,7 +16,7 @@ export default function Footer() {
           <div className="relative w-16 h-16 bg-accent rounded-full p-2">
             <Image
               src="/globe.svg"
-              alt="Atti Logo"
+              alt="Atti Community Logo"
               fill
               className="object-contain p-2"
             />
@@ -26,15 +32,36 @@ export default function Footer() {
           <a href="mailto:attiofficial.in@gmail.com" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all">
             <Mail size={20} />
           </a>
-          <a href="#" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all" title="Social">
-            <MessageCircle size={20} />
-          </a>
-          <a href="#" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all" title="LinkedIn">
-            <Briefcase size={20} />
-          </a>
-          <a href="#" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all" title="Twitter">
-            <Globe size={20} />
-          </a>
+          
+          {SOCIAL_LINKS.instagram ? (
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all" title="Instagram">
+              <MessageCircle size={20} />
+            </a>
+          ) : (
+            <span className="w-12 h-12 rounded-full bg-accent/5 text-accent/30 flex items-center justify-center cursor-not-allowed" title="Instagram - Coming Soon">
+              <MessageCircle size={20} />
+            </span>
+          )}
+
+          {SOCIAL_LINKS.linkedin ? (
+            <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all" title="LinkedIn">
+              <Briefcase size={20} />
+            </a>
+          ) : (
+            <span className="w-12 h-12 rounded-full bg-accent/5 text-accent/30 flex items-center justify-center cursor-not-allowed" title="LinkedIn - Coming Soon">
+              <Briefcase size={20} />
+            </span>
+          )}
+          
+          {SOCIAL_LINKS.twitter ? (
+            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-highlight hover:text-dark transition-all" title="Twitter">
+              <Globe size={20} />
+            </a>
+          ) : (
+            <span className="w-12 h-12 rounded-full bg-accent/5 text-accent/30 flex items-center justify-center cursor-not-allowed" title="Twitter - Coming Soon">
+              <Globe size={20} />
+            </span>
+          )}
         </div>
         
         <div className="w-full h-px bg-accent/20 mb-8 max-w-2xl" />

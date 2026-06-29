@@ -2,22 +2,8 @@
 
 import { motion } from "framer-motion";
 
-const TESTIMONIALS = [
-  {
-    name: "Placeholder Client 1",
-    role: "CEO, Tech Startup",
-    quote: "Working with Atti was an absolute breath of fresh air. They brought our vision to life faster than we expected.",
-  },
-  {
-    name: "Placeholder Client 2",
-    role: "Local Business Owner",
-    quote: "Incredibly supportive and creative. The new brand identity perfectly captures what we are about.",
-  },
-  {
-    name: "Placeholder Client 3",
-    role: "E-commerce Founder",
-    quote: "The web app they built is stunning and performant. Highly recommend this talented team.",
-  },
+const TESTIMONIALS: Array<{ name: string; role: string; quote: string }> = [
+  // TODO: insert real client testimonial here
 ];
 
 export default function Testimonials() {
@@ -37,28 +23,42 @@ export default function Testimonials() {
           <div className="w-24 h-1 bg-highlight mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
-          {TESTIMONIALS.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="flex flex-col h-full"
-            >
-              <p className="text-dark/80 text-2xl font-medium leading-snug mb-8 relative z-10 flex-1">
-                <span className="absolute -top-4 -left-4 text-6xl text-primary/10 -z-10 font-serif">"</span>
-                {testimonial.quote}
-              </p>
-              
-              <div className="mt-auto">
-                <h4 className="font-bold text-dark text-lg">{testimonial.name}</h4>
-                <p className="text-primary font-bold text-sm tracking-wide uppercase">{testimonial.role}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {TESTIMONIALS.length > 0 ? (
+          <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className="flex flex-col h-full"
+              >
+                <p className="text-dark/80 text-2xl font-medium leading-snug mb-8 relative z-10 flex-1">
+                  <span className="absolute -top-4 -left-4 text-6xl text-primary/10 -z-10 font-serif">"</span>
+                  {testimonial.quote}
+                </p>
+                
+                <div className="mt-auto">
+                  <h4 className="font-bold text-dark text-lg">{testimonial.name}</h4>
+                  <p className="text-primary font-bold text-sm tracking-wide uppercase">{testimonial.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center py-12"
+          >
+            <p className="text-dark/80 text-2xl font-medium">
+              References available on request — drop us a line.
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

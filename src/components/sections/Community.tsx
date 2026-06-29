@@ -5,11 +5,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 const TEAM = [
-  { name: "Hari Karthick", role: "Co-Founder", image: "https://i.pravatar.cc/300?img=11" },
-  { name: "Prasanna", role: "Co-Founder", image: "https://i.pravatar.cc/300?img=12" },
-  { name: "Siva", role: "Developer", image: "https://i.pravatar.cc/300?img=13" },
-  { name: "Selva Kumaran", role: "Designer", image: "https://i.pravatar.cc/300?img=14" },
-  { name: "Sanjay Kumar", role: "Security Specialist", image: "https://i.pravatar.cc/300?img=15" },
+  { name: "Hari Karthick", role: "Co-Founder", image: "/team/hari-karthick.jpg" },
+  { name: "Prasanna", role: "Co-Founder", image: "/team/prasanna.jpg" },
+  { name: "Siva", role: "Developer", image: "/team/siva.jpg" },
+  { name: "Selva Kumaran", role: "Designer", image: "/team/selva-kumaran.jpg" },
+  { name: "Sanjay Kumar", role: "Security Specialist", image: "/team/sanjay-kumar.jpg" },
 ];
 
 export default function Community() {
@@ -78,34 +78,9 @@ export default function Community() {
           </motion.div>
 
           {/* Member Nodes */}
-          {TEAM.map((member, i) => {
-            // Positioning math for a circle around center, offset by half a segment to level the top 2
-            const angle = (i / TEAM.length) * Math.PI * 2 - Math.PI / 2 - (Math.PI / 5);
-            const radius = 220;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-
-            return (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, x: 0, y: 0 }}
-                whileInView={{ opacity: 1, x, y }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: i * 0.1 + 0.5, type: "spring" }}
-                whileHover={{ scale: 1.1, zIndex: 20 }}
-                className="absolute w-24 h-24 sm:w-28 sm:h-28 flex flex-col items-center justify-center group"
-                style={{ marginLeft: "-3rem", marginTop: "-3rem" }} // Center offset
-              >
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-accent shadow-lg mb-2">
-                  <Image src={member.image} alt={member.name} fill sizes="(max-width: 640px) 96px, 112px" className="object-cover" />
-                </div>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 bg-dark text-accent text-xs py-1 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap mt-2 pointer-events-none z-30">
-                  <span className="font-bold block">{member.name}</span>
-                  <span className="text-highlight/80">{member.role}</span>
-                </div>
-              </motion.div>
-            );
-          })}
+          {TEAM.map((member, i) => (
+            <MemberNode key={member.name} member={member} i={i} total={TEAM.length} />
+          ))}
         </div>
       </div>
 
@@ -120,5 +95,45 @@ export default function Community() {
         }
       `}</style>
     </section>
+  );
+}
+
+function MemberNode({ member, i, total }: { member: typeof TEAM[0], i: number, total: number }) {
+  const [imgError, setImgError] = useState(false);
+  const initials = member.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2);
+  
+  // Positioning math for a circle around center, offset by half a segment to level the top 2
+  const angle = (i / total) * Math.PI * 2 - Math.PI / 2 - (Math.PI / 5);
+  const radius = 220;
+  const x = Math.cos(angle) * radius;
+  const y = Math.sin(angle) * radius;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 0, y: 0 }}
+      whileInView={{ opacity: 1, x, y }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, delay: i * 0.1 + 0.5, type: "spring" }}
+      whileHover={{ scale: 1.1, zIndex: 20 }}
+      className="absolute w-24 h-24 sm:w-28 sm:h-28 flex flex-col items-center justify-center group"
+      style={{ marginLeft: "-3rem", marginTop: "-3rem" }}
+    >
+      <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-accent shadow-lg mb-2 bg-primary/10 flex items-center justify-center">
+          {!imgError ? (
+          <img 
+            src={member.image} 
+            alt={`Atti team member ${member.name}, ${member.role}`} 
+            className="w-full h-full object-cover"
+            onError={() => setImgError(true)} 
+          />
+        ) : (
+          <span className="text-3xl font-black text-primary/60 uppercase">{initials}</span>
+        )}
+      </div>
+      <div className="absolute top-full left-1/2 -translate-x-1/2 bg-dark text-accent text-xs py-1 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap mt-2 pointer-events-none z-30">
+        <span className="font-bold block">{member.name}</span>
+        <span className="text-highlight/80">{member.role}</span>
+      </div>
+    </motion.div>
   );
 }

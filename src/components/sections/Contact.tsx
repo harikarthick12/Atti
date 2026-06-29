@@ -10,9 +10,10 @@ export default function Contact() {
     name: "",
     email: "",
     message: "",
+    budget: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -36,7 +37,7 @@ export default function Contact() {
       const result = await response.json();
       if (result.success) {
         setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", budget: "" });
         setTimeout(() => setStatus("idle"), 3000);
       } else {
         setStatus("error");
@@ -127,6 +128,24 @@ export default function Contact() {
                 rows={3}
                 className="w-full bg-transparent border-b-2 border-accent/20 px-2 py-3 outline-none focus:border-highlight transition-colors text-accent font-medium text-lg resize-none placeholder-transparent"
               />
+            </div>
+            
+            <div className="flex flex-col gap-2">
+              <label htmlFor="budget" className="text-xs font-bold text-accent/60 uppercase tracking-widest pl-2">Budget Range</label>
+              <select 
+                id="budget"
+                name="budget"
+                value={formData.budget}
+                onChange={handleChange}
+                required
+                className="w-full bg-transparent border-b-2 border-accent/20 px-2 py-3 outline-none focus:border-highlight transition-colors text-accent font-medium text-lg appearance-none cursor-pointer"
+              >
+                <option value="" disabled className="bg-dark text-accent/50">Select a budget range</option>
+                <option value="Under ₹10k" className="bg-dark text-accent">Under ₹10k</option>
+                <option value="₹10k–₹30k" className="bg-dark text-accent">₹10k–₹30k</option>
+                <option value="₹30k+" className="bg-dark text-accent">₹30k+</option>
+                <option value="Not sure yet" className="bg-dark text-accent">Not sure yet</option>
+              </select>
             </div>
             
             <button

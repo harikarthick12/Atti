@@ -8,31 +8,37 @@ const SERVICES = [
     title: "Web Development",
     description: "Portfolios, business sites, e-commerce, and full-stack solutions tailored to you.",
     icon: Code,
+    price: "₹[X]",
   },
   {
     title: "UI/UX Design",
     description: "App design, website design, wireframes, and interactive prototypes.",
     icon: Layout,
+    price: "₹[X]",
   },
   {
     title: "Branding",
     description: "Logo, brand identity, posters, and comprehensive social media kits.",
     icon: PenTool,
+    price: "₹[X]",
   },
   {
     title: "Domain & Hosting",
     description: "Domain registration, hosting setup, seamless deployment and maintenance.",
     icon: Server,
+    price: "₹[X]",
   },
   {
     title: "Cyber Security",
     description: "Security audits, basic protection, and vulnerability testing for peace of mind.",
     icon: Shield,
+    price: "₹[X]",
   },
   {
     title: "Automation",
     description: "Workflow automation, intelligent chatbots, and AI integrations.",
     icon: Zap,
+    price: "₹[X]",
   },
 ];
 
@@ -73,9 +79,12 @@ export default function Services() {
                 </div>
                 
                 <h3 className="text-2xl font-bold text-accent mb-4">{service.title}</h3>
-                <p className="text-accent/60 leading-relaxed group-hover:text-accent/80 transition-colors">
+                <p className="text-accent/60 leading-relaxed group-hover:text-accent/80 transition-colors mb-6">
                   {service.description}
                 </p>
+                <div className="inline-block bg-primary/10 text-highlight px-3 py-1 rounded-full text-sm font-bold border border-primary/20">
+                  Starting from {service.price}
+                </div>
               </div>
 
               {/* Decorative Leaf */}

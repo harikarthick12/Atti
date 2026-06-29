@@ -103,11 +103,11 @@ export default function Hero() {
             />
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-primary tracking-tight mb-4">
-            Atti
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tracking-tight mb-4 max-w-4xl mx-auto leading-tight">
+            We build websites, brands, and apps that punch above their price.
           </h1>
-          <h2 className="text-2xl md:text-4xl font-semibold text-secondary mb-6">
-            Your friendly neighbour ❤️ from the community
+          <h2 className="text-2xl md:text-3xl font-semibold text-secondary mb-6 max-w-3xl mx-auto">
+            Your friendly neighbour ❤️ from the community — affordable, fast, and built with care.
           </h2>
         </motion.div>
 
@@ -127,16 +127,16 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center gap-4"
         >
           <a
-            href="#services"
+            href="#contact"
             className="bg-primary text-accent px-8 py-4 rounded-full font-bold text-lg hover:bg-highlight hover:-translate-y-1 transition-all shadow-lg hover:shadow-primary/30 w-full sm:w-auto"
           >
-            Explore Services
+            Get a Free Quote
           </a>
           <a
-            href="#team"
+            href="#services"
             className="bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/5 transition-all w-full sm:w-auto"
           >
-            Join Community
+            Explore Services
           </a>
         </motion.div>
       </div>
