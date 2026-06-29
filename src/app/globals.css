@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #2E4A32;
+  --secondary: #6B4F3A;
+  --accent: #E8D9C4;
+  --highlight: #7BAE4F;
+  --dark: #1A281B; /* Deep Forest Green instead of Charcoal Black */
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-highlight: var(--highlight);
+  --color-dark: var(--dark);
+}
+
+body {
+  background-color: var(--accent);
+  color: var(--dark);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scrolling base styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
