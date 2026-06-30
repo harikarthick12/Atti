@@ -7,9 +7,9 @@ import { useState } from "react";
 const TEAM = [
   { name: "Hari Karthick", role: "Co-Founder", image: "/team/hari-karthick.jpg" },
   { name: "Prasanna", role: "Co-Founder", image: "/team/prasanna.jpg" },
-  { name: "Siva", role: "Developer", image: "/team/siva.jpg" },
-  { name: "Selva Kumaran", role: "Designer", image: "/team/selva-kumaran.jpg" },
-  { name: "Sanjay Kumar", role: "Security Specialist", image: "/team/sanjay-kumar.jpg" },
+  { name: "Siva", role: "Designer", image: "/team/siva.jpg" },
+  { name: "Selva Kumaran", role: "Developer", image: "/team/selva-kumaran.jpg" },
+  { name: "Sanjay Kumar", role: "Cyber Security", image: "/team/sanjay-kumar.jpg" },
 ];
 
 export default function Community() {
