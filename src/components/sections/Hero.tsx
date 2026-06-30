@@ -46,16 +46,21 @@ function Particles() {
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-accent">
+    <section className="relative w-full min-h-[100dvh] py-24 flex flex-col items-center justify-center overflow-hidden bg-accent">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply">
-        {mounted && (
+        {mounted && !isMobile && (
           <Canvas camera={{ position: [0, 0, 5] }}>
             <color attach="background" args={["#E8D9C4"]} />
             <ambientLight intensity={0.5} />
@@ -103,7 +108,7 @@ export default function Hero() {
             />
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tracking-tight mb-4 max-w-4xl mx-auto leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-primary tracking-tight mb-4 max-w-4xl mx-auto leading-tight">
             We build websites, brands, and apps that punch above their price.
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-secondary mb-6 max-w-3xl mx-auto">

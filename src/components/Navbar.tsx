@@ -87,7 +87,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="absolute top-0 left-0 w-full h-screen bg-accent flex flex-col items-center justify-center gap-8 md:hidden"
+          className="absolute top-0 left-0 w-full h-[100dvh] bg-accent flex flex-col items-center justify-center gap-8 md:hidden"
         >
           {NAV_LINKS.map((link) => (
             <Link

@@ -39,7 +39,7 @@ export default function Community() {
         </motion.div>
 
         {/* Root System Avatar Layout (CSS Grid based simulation of circular/organic layout) */}
-        <div className="relative max-w-4xl mx-auto h-[600px] flex items-center justify-center">
+        <div className="relative max-w-4xl mx-auto h-[350px] md:h-[600px] flex items-center justify-center transform scale-[0.55] sm:scale-[0.75] md:scale-100 origin-center mt-10 md:mt-0">
           
           {/* SVG Connecting Lines (Abstract Roots) */}
           <svg key={hoverKey} className="absolute inset-0 w-full h-full pointer-events-none opacity-20 text-primary" viewBox="0 0 800 600">
