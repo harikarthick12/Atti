@@ -41,16 +41,16 @@ export default function Community() {
         <div className="relative max-w-4xl mx-auto h-[350px] md:h-[600px] flex items-center justify-center transform scale-[0.55] sm:scale-[0.75] md:scale-100 origin-center mt-10 md:mt-0">
 
           {/* SVG Connecting Lines (Abstract Roots) */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 text-primary" viewBox="0 0 800 600">
+          <svg className="absolute top-1/2 left-1/2 overflow-visible pointer-events-none opacity-20 text-primary">
             {TEAM.map((_, i) => {
               const angle = (i / TEAM.length) * Math.PI * 2 - Math.PI / 2 - (Math.PI / 5);
               const radius = 220;
-              const endX = 400 + Math.cos(angle) * radius;
-              const endY = 300 + Math.sin(angle) * radius;
+              const endX = Math.cos(angle) * radius;
+              const endY = Math.sin(angle) * radius;
 
-              // Control point for curve
-              const cpX = 400 + (endX - 400) * 0.5;
-              const cpY = 300 + (endY - 300) * 0.5 - 50;
+              // Control point for curve (relative to 0,0)
+              const cpX = endX * 0.5;
+              const cpY = endY * 0.5 - 50;
 
               return (
                 <motion.path
@@ -59,7 +59,7 @@ export default function Community() {
                   whileInView={{ pathLength: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-                  d={`M400,300 Q${cpX},${cpY} ${endX},${endY}`}
+                  d={`M0,0 Q${cpX},${cpY} ${endX},${endY}`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="4"
